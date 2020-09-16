@@ -2,6 +2,8 @@ import React from 'react';
 import './List.css';
 import Card from './Card';
 
+
+
 function List(props){
     return (
         <section className='List'>
@@ -9,18 +11,19 @@ function List(props){
                 <h2>{props.header}</h2>
             </header>
             <div className='List-cards'>
-                {//Go over this section with mentor
-                }   
                 {props.cards.map((card) => 
                     <Card 
                         key={card.id}
                         title={card.title}
                         content={card.content}
+                        onDeleteItem = {props.onDeleteItem}
+                        
                     />
                 )}
                 <button
                     type='button'
                     className='List-add-button'
+                    onClick = { () => props.onRandomCard(props.item)}
                 >
                     + Add Random Card
                 </button>

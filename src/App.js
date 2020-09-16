@@ -1,38 +1,48 @@
 import React, { Component } from 'react';
 import List from './List';
+import STORE from './store'
 import './App.css';
 
-//go over this section with mentor
 class App extends Component {
-  static defaultProps = {
-    store: {
-      lists: [],
-      allCards: {}
-    }
-  };
+  state = {
+    store: STORE,
+  }
+
+  handleDeleteItem = (cardId) => {
+    const newItems = this.state.cards.filter(itm => itm !== cardId)
+    this.setState({
+      cards: newItems
+    })
+    console.log('handle delete item called', {cardId})
+  }
+
+  handleAddRandomCard(item){
+    console.log('handle add random card called', {item})
+  }
 
   render(){
-    const {store}=this.props
+    const {store} = this.state
     return (
-      <main className='App'>
+      <div className='App'>
         <header className='App-header'>
           <h1>Trelloyes!</h1>
         </header>
         <div className='App-list'> 
-
-        {//go over this section with mentor
-        }
           {store.lists.map(list => (
-            <List
-              key={list.id}
-              header={list.header}
-              cards={list.cardIds.map(id => store.allCards[id])}
+            <List 
+              key = {list.id}
+              id = {list.id}
+              header = {list.header}
+              cards = {list.cardIds.map(id => store.allCards[id])} 
+              onDeleteItem = {this.handleDeleteItem}
+              onRandomCard = {this.handleAddRandomCard}
             />
           ))}
+            
         </div>
-      </main>
+      </div>
     );
   }
-}
+};
 
 export default App;

@@ -4,11 +4,11 @@ import './Card.css';
 function Card(props){
     return (
         <div className='Card'>
-            <button type='button'>Delete</button>
+            <button 
+                type='button'
+                onClick = {() => props.onDeleteItem(props.item)}
+            >Delete</button>
             <h3>
-                
-                {//Why do I not need to reference allCards in store.js for the title and content?
-                }
                 {props.title}
             </h3>
             <p>
