@@ -13,11 +13,26 @@ class List extends React.Component{
         const newItems = this.state.cards.filter(itm => itm !== item)
         this.setState({
             cards: newItems
-        })
+        }) 
     }
+
+    newRandomCard = () => {
+        const id = Math.random().toString(36).substring(2, 4)
+          + Math.random().toString(36).substring(2, 4);
+        return {
+          id,
+          title: `Random Card ${id}`,
+          content: 'lorem ipsum',
+        }
+      }
     
     handleAddRandomCard(){
         console.log('handle add random card called')
+        this.setState(
+            {
+                cards:[...this.state.cards, this.newRandomCard()]
+            }
+        )
     }
 
     render(){
@@ -33,6 +48,7 @@ class List extends React.Component{
                             title={card.title}
                             content={card.content}
                             onDeleteItem = {this.handleDeleteItem}  
+                            card={card}
                         />
                     )}
                     <button

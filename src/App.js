@@ -7,7 +7,7 @@ class App extends Component {
   state = {
     store: STORE,
   }
-  
+   
   render(){
     const {store} = this.state
     return (
