@@ -7,19 +7,7 @@ class App extends Component {
   state = {
     store: STORE,
   }
-
-  handleDeleteItem = (cardId) => {
-    const newItems = this.state.cards.filter(itm => itm !== cardId)
-    this.setState({
-      cards: newItems
-    })
-    console.log('handle delete item called', {cardId})
-  }
-
-  handleAddRandomCard(item){
-    console.log('handle add random card called', {item})
-  }
-
+  
   render(){
     const {store} = this.state
     return (
@@ -33,9 +21,7 @@ class App extends Component {
               key = {list.id}
               id = {list.id}
               header = {list.header}
-              cards = {list.cardIds.map(id => store.allCards[id])} 
-              onDeleteItem = {this.handleDeleteItem}
-              onRandomCard = {this.handleAddRandomCard}
+              cards = {list.cardIds.map(id => store.allCards[id])}
             />
           ))}
             
